@@ -5,7 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class TicTocToeGui extends JFrame implements ActionListener {
+/**
+ * Simple two player Tic Tac Toe game implemented with Swing.
+ */
+public class TicTacToeGui extends JFrame implements ActionListener {
     // xScore - holds the score value for the x player
     // oScore - holds the score for the o player
     // moveCounter - counts the number of moves (used to determine if there is a draw)
@@ -18,7 +21,7 @@ public class TicTocToeGui extends JFrame implements ActionListener {
     private JButton[][] board;
     private JDialog resultDialog;
 
-    public TicTocToeGui(){
+    public TicTacToeGui(){
         super("Tic Tac Toe (Java Swing)");
         setSize(CommonConstants.FRAME_SIZE);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -32,7 +35,7 @@ public class TicTocToeGui extends JFrame implements ActionListener {
         board = new JButton[3][3];
 
 
-        // player x stairs first
+        // player X starts first
         isPlayerOne = true;
 
         addGuiComponents();
@@ -81,7 +84,7 @@ public class TicTocToeGui extends JFrame implements ActionListener {
 
         );
 
-        // create bord
+        // create board
         for(int i = 0; i< board.length; i++){
             for(int j = 0; j < board[i].length; j++){
                 JButton button = new JButton();
@@ -141,7 +144,7 @@ public class TicTocToeGui extends JFrame implements ActionListener {
         resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         //restart button
-        JButton restartButton = new JButton("PLay Again");
+        JButton restartButton = new JButton("Play Again");
         restartButton.setBackground(CommonConstants.BOARD_COLOR);
         restartButton.addActionListener(this);
 
@@ -194,12 +197,11 @@ public class TicTocToeGui extends JFrame implements ActionListener {
                     isPlayerOne = true;
                 }
 
-                // check win conditions
-                if(isPlayerOne){
-                    // check to see if the last move from 0 was the winning move
+                // check win conditions. When isPlayerOne is true here the last
+                // move was made by player O, otherwise by player X.
+                if (isPlayerOne) {
                     checkOWin();
-                }{
-                    // check to see if the last move from X was the winning move
+                } else {
                     checkXWin();
                 }
 
@@ -207,7 +209,7 @@ public class TicTocToeGui extends JFrame implements ActionListener {
                 checkDraw();
 
                 // update score label
-                scoreLabel.setText("X: " + xScore + " | 0: " + oScore);
+                scoreLabel.setText("X: " + xScore + " | O: " + oScore);
             }
 
             repaint();
@@ -339,8 +341,8 @@ public class TicTocToeGui extends JFrame implements ActionListener {
         turnLabel.setText(CommonConstants.X_LABEL);
         turnLabel.setBackground(CommonConstants.X_COLOR);
 
-        // reset score display
-        scoreLabel.setText(CommonConstants.SCORE_LABEL);
+        // update score display
+        scoreLabel.setText("X: " + xScore + " | O: " + oScore);
 
         //reset move counter
         moveCounter = 0;

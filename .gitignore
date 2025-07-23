@@ -25,5 +25,12 @@ bin/
 ### VS Code ###
 .vscode/
 
+# Java build artifacts
+*.class
+*.iml
+
+# IntelliJ project folder
+.idea/
+
 ### Mac OS ###
 .DS_Store
