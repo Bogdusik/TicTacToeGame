@@ -2,10 +2,10 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable(){
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
-            public void run(){
-                new TicTocToeGui().setVisible(true);
+            public void run() {
+                new TicTacToeGui().setVisible(true);
             }
         });
     }
